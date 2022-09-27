@@ -1,6 +1,9 @@
 const express = require("express");
+const connectDatabase = require("./db/dbConn");
 const app = express();
 const port = 5000;
+
+connectDatabase();
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

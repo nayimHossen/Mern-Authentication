@@ -20,33 +20,31 @@ const Register = () => {
           <h2 className="text-center text-2xl font-bold">Registr</h2>
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* Name Input filed start */}
-            <div className="form-control w-full max-w-xs p-0">
+            <div className="form-control w-full max-w-xs">
               <label className="label">
-                <span className="label-text">Name</span>
+                <span className="label-text">Your Name</span>
               </label>
               <input
+                name="fname"
                 type="text"
-                placeholder="Your Name"
+                placeholder="Your Email"
                 className="input input-bordered w-full max-w-xs"
-                {...register("name", {
+                {...register("fname", {
                   required: {
                     value: true,
                     message: "Name is Required",
                   },
-                  pattern: {
-                    message: "Provide a name",
-                  },
                 })}
               />
               <label className="label p-[2px]">
-                {errors.className?.type === "required" && (
+                {errors.fname?.type === "required" && (
                   <span className="label-text-alt text-red-500">
-                    {errors.name.message}
+                    {errors.fname.message}
                   </span>
                 )}
-                {errors.name?.type === "pattern" && (
+                {errors.email?.type === "pattern" && (
                   <span className="label-text-alt text-red-500">
-                    {errors.name.message}
+                    {errors.fname.message}
                   </span>
                 )}
               </label>
@@ -94,6 +92,7 @@ const Register = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
+                name="password"
                 type="password"
                 placeholder="Password"
                 className="input input-bordered w-full max-w-xs"
@@ -108,7 +107,7 @@ const Register = () => {
                   },
                 })}
               />
-              <label className="label p-[2px]">
+              <label className="label">
                 {errors.password?.type === "required" && (
                   <span className="label-text-alt text-red-500">
                     {errors.password.message}
@@ -123,46 +122,11 @@ const Register = () => {
             </div>
             {/* Password Input filed start */}
 
-            {/*Confirm Password Input filed start */}
-            <div className="form-control w-full max-w-xs">
-              <label className="label">
-                <span className="label-text">Confirm Password</span>
-              </label>
-              <input
-                type="password"
-                placeholder="Confirm Password"
-                className="input input-bordered w-full max-w-xs"
-                {...register("cPassword", {
-                  required: {
-                    value: true,
-                    message: "Confirm Password is Required",
-                  },
-                  minLength: {
-                    value: 6,
-                    message: "Must be 6 characters or longer",
-                  },
-                })}
-              />
-              <label className="label p-[2px]">
-                {errors.password?.type === "required" && (
-                  <span className="label-text-alt text-red-500">
-                    {errors.password.message}
-                  </span>
-                )}
-                {errors.password?.type === "minLength" && (
-                  <span className="label-text-alt text-red-500">
-                    {errors.password.message}
-                  </span>
-                )}
-              </label>
-            </div>
-            {/* Confirm Password Input filed start */}
-
             {/* Login Button */}
             <input
-              className="btn btn-primary w-full mt-1 max-w-xs text-white"
+              className="btn btn-primary w-full max-w-xs text-white"
               type="submit"
-              value="Login"
+              value="Register"
             />
           </form>
           <p>
