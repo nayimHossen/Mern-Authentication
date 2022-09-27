@@ -6,7 +6,7 @@ const Header = () => {
     <nav className="shadow-md">
       <div className="navbar container mx-auto px-5">
         <div className="flex-1">
-          <Link to="#" className="btn btn-ghost normal-case text-xl">
+          <Link to="/" className="btn btn-ghost normal-case text-xl">
             Hp Cloud
           </Link>
         </div>

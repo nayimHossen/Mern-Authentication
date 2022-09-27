@@ -1,39 +1,180 @@
 import React from "react";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 const Register = () => {
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
-    <div className="hero min-h-screen">
-      <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+    <div className="flex py-5 px-2 justify-center items-center">
+      <div className="card w-96 bg-base-100 shadow-xl">
         <div className="card-body">
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Email</span>
-            </label>
+          <h2 className="text-center text-2xl font-bold">Registr</h2>
+          <form onSubmit={handleSubmit(onSubmit)}>
+            {/* Name Input filed start */}
+            <div className="form-control w-full max-w-xs p-0">
+              <label className="label">
+                <span className="label-text">Name</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="input input-bordered w-full max-w-xs"
+                {...register("name", {
+                  required: {
+                    value: true,
+                    message: "Name is Required",
+                  },
+                  pattern: {
+                    message: "Provide a name",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.className?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.name.message}
+                  </span>
+                )}
+                {errors.name?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.name.message}
+                  </span>
+                )}
+              </label>
+            </div>
+            {/* Name Input filed end */}
+
+            {/* Email Input filed start */}
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Email</span>
+              </label>
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="input input-bordered w-full max-w-xs"
+                {...register("email", {
+                  required: {
+                    value: true,
+                    message: "Email is Required",
+                  },
+                  pattern: {
+                    value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/,
+                    message: "Provide a valid Email",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.email?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.email.message}
+                  </span>
+                )}
+                {errors.email?.type === "pattern" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.email.message}
+                  </span>
+                )}
+              </label>
+            </div>
+            {/* Email Input filed end */}
+
+            {/* Password Input filed start */}
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Password"
+                className="input input-bordered w-full max-w-xs"
+                {...register("password", {
+                  required: {
+                    value: true,
+                    message: "Password is Required",
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "Must be 6 characters or longer",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.password?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
+              </label>
+            </div>
+            {/* Password Input filed start */}
+
+            {/*Confirm Password Input filed start */}
+            <div className="form-control w-full max-w-xs">
+              <label className="label">
+                <span className="label-text">Confirm Password</span>
+              </label>
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                className="input input-bordered w-full max-w-xs"
+                {...register("cPassword", {
+                  required: {
+                    value: true,
+                    message: "Confirm Password is Required",
+                  },
+                  minLength: {
+                    value: 6,
+                    message: "Must be 6 characters or longer",
+                  },
+                })}
+              />
+              <label className="label p-[2px]">
+                {errors.password?.type === "required" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <span className="label-text-alt text-red-500">
+                    {errors.password.message}
+                  </span>
+                )}
+              </label>
+            </div>
+            {/* Confirm Password Input filed start */}
+
+            {/* Login Button */}
             <input
-              type="text"
-              placeholder="email"
-              className="input input-bordered"
+              className="btn btn-primary w-full mt-1 max-w-xs text-white"
+              type="submit"
+              value="Login"
             />
-          </div>
-          <div className="form-control">
-            <label className="label">
-              <span className="label-text">Password</span>
-            </label>
-            <input
-              type="text"
-              placeholder="password"
-              className="input input-bordered"
-            />
-            <label className="label">
-              <Link to="#" className="label-text-alt link link-hover">
-                Forgot password?
+          </form>
+          <p>
+            <small>
+              Alrady Have an account ?{" "}
+              <Link className="text-primary hover:underline" to="/login">
+                Please Login
               </Link>
-            </label>
-          </div>
-          <div className="form-control mt-6">
-            <button className="btn btn-primary">Login</button>
-          </div>
+            </small>
+          </p>
+          <div className="divider m-0">OR</div>
+          <button className="btn btn-outline">Continue with Google</button>
         </div>
       </div>
     </div>
